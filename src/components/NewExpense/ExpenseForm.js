@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import './ExpenseForm.css'
+
 const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('')
     const [enteredAmount, setEnteredAmount] = useState('')
@@ -19,8 +20,12 @@ const ExpenseForm = (props) => {
         setEnteredTitle('')
         setEnteredAmount('')
         setEnteredDate('')
+        cancelFormHandler()
     }
 
+    const cancelFormHandler = () => {
+        props.hideForm()
+    }
 
     return (
         <form onSubmit={submitHandler}>
@@ -33,16 +38,19 @@ const ExpenseForm = (props) => {
             <div className={"new-expense__controls"}>
                 <div className={"new-expense__control"}>
                     <label>Amount</label>
-                    <input type={'number'} value={enteredAmount} onChange={amountChangedHandler} min={"0.01"} step={"0.01"} />
+                    <input type={'number'} value={enteredAmount} onChange={amountChangedHandler} min={"0.01"}
+                           step={"0.01"}/>
                 </div>
             </div>
             <div className={"new-expense__controls"}>
                 <div className={"new-expense__control"}>
                     <label>Date</label>
-                    <input type={'date'} value={enteredDate} onChange={dateChangedHandler} min={"2019-01-01"} max={"2023-12-31"} />
+                    <input type={'date'} value={enteredDate} onChange={dateChangedHandler} min={"2019-01-01"}
+                           max={"2023-12-31"}/>
                 </div>
             </div>
             <div className={"new-expense__actions"}>
+                <button onClick={cancelFormHandler} type={"button"}>Cancel</button>
                 <button type={"submit"}>Add Expense</button>
             </div>
         </form>

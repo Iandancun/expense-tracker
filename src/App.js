@@ -38,7 +38,7 @@ let App = () => {
     return (
         <div>
             <NewExpense onAddExpense={addExpenseDataHandler}/>
-            <Expenses expenses={expenses}></Expenses>
+            <Expenses items={expenses}></Expenses>
         </div>
     );
 }
